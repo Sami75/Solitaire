@@ -2,6 +2,7 @@
 
 import java.lang.Math; 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Jeu {
@@ -16,14 +17,14 @@ public class Jeu {
 
 	public Jeu() {
 		
-		c1 = new Tas(1,"C1");
-		c2 = new Tas(2,"C2");
-		c3 = new Tas(3,"C3");
-		c4 = new Tas(4,"C4");
-		c5 = new Tas(5,"C5");
-		c6 = new Tas(6,"C6");
-		c7 = new Tas(7,"C7");
-		c8 = new Tas(8,"Pioche");
+		c1 = new Tas(1,"C1",0);
+		c2 = new Tas(2,"C2",0);
+		c3 = new Tas(3,"C3",0);
+		c4 = new Tas(4,"C4",0);
+		c5 = new Tas(5,"C5",0);
+		c6 = new Tas(6,"C6",0);
+		c7 = new Tas(7,"C7",0);
+		c8 = new Tas(8,"Pioche",0);
 		distribPique();
 		distribCarreau();
 		distribTrefle();
@@ -117,8 +118,14 @@ public class Jeu {
 	public void afficheTas(Tas a) {
 		for(int i = 0; i < a.size(); i++)
 	    {
-	      System.out.println(a.getNom() + " : " + a.get(i));
+	      System.out.print( a.get(i) + " ");
 	    }
+		System.out.println();
+	}
+	
+	public void afficheVraiTas(Tas a) {
+		int i = 0;
+		System.out.print(a.get(i) + " - - ");
 	}
 	
 	public void afficheJeu() {
@@ -132,9 +139,84 @@ public class Jeu {
 		afficheTas(c8);
 	}
 
+	public void afficheVraiJeu() {
+		afficheVraiTas(c1);
+		afficheVraiTas(c2);
+		afficheVraiTas(c3);
+		afficheVraiTas(c4);
+		afficheVraiTas(c5);
+		afficheVraiTas(c6);
+		afficheVraiTas(c7);
+	}
+	public void afficheVraiPioche() {
+		System.out.println("Pioche : " + c8.get(0));
+	}
+	
+	public void affichePioche() {
+		for(int i = 0; i < c8.size(); i++)
+	    {
+	      System.out.print( c8.get(i) + " ");
+	    }
+	}
+	public void pioche() {
+		
+		System.out.println("Pioche : " + c8.get(c8.getCmp()));
+		c8.incrementTas();
+	}
+	
+	public void deplacePile() {
+		System.out.println("Déplacer vers pile");
+	}
+	
+	public void deplaceColonne() {
+		System.out.println("Déplacer vers colonne");
+	}
+	
+	
+	public void afficheMenu() {
+		
+		System.out.println();
+		System.out.println("1. Piocher");
+		System.out.println("2. Déplacer une carte dans une colonne");
+		System.out.println("3. Déplacer une carte dans une pile");
+		System.out.println("Quel action souhaitez vous faire ? Taper le numéros correspondant");
+		
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		
+		switch(r) {
+		
+		case 1 : 
+				pioche();
+				break;
+		
+		case 2 : 
+				deplaceColonne();
+				break;
+		
+		case 3 : 
+				deplacePile();
+				break;
+		
+		default : System.out.println("Veuillez entrer les numéros correspondant"); new MenuSolitaire();
+		}
+	}
 	public static void main(String[] args){
 		Jeu a = new Jeu();
-		a.afficheJeu();
+		a.afficheVraiJeu();
+		System.out.println();
+		a.affichePioche();
+		System.out.println();
+		a.pioche();
+		
+		while(true) {
+			
+			a.afficheMenu();
+			a.afficheVraiJeu();
+		
+		}
+		
+		
 	}
 	
 	

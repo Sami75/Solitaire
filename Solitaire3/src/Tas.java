@@ -2,32 +2,22 @@
 
 import java.util.ArrayList;
 
-public class Tas extends ArrayList<String> {
+public class Tas {
 	
-	private int tailleMax;
-	private String nomTas;
-	private int cmp;
+	int cmp;
+	private ArrayList<Carte> array;
 	
-	public Tas(int t, String nom, int compt) {
-		tailleMax = t;
-		nomTas = nom;
-		cmp = compt;
-	}
-	
-	public int getT() {
-		return tailleMax;
-	}
-	
-	public String getNom() {
-		return nomTas;
-	}
+	public Tas(int taille) {
+		array = new ArrayList<Carte>();
+	} 
 	
 	public void setPioche() {
 		cmp = 0;
 	}
 	
+	
 	public void incrementTas() {
-		if(cmp == this.size()-1)
+		if(cmp == this.array.size()-1)
 			cmp = 0;
 		else
 			cmp++;

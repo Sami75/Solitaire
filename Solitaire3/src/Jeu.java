@@ -27,16 +27,12 @@ public class Jeu {
 	
 	public void ajoutCarte() {
 	
-		for(int j = 1 ; j <= 12 ; j++) {
-			a.add(new Carte(j,"Pique"));
-			a.add(new Carte(j,"Coeur"));
-			a.add(new Carte(j,"Trefle"));
-			a.add(new Carte(j,"Carreau"));
-		}
-		for(int i = 0 ; i <= a.size(); i++) {
-			System.out.println(a.get(i));
-		}
-		
+		for(int j = 1 ; j < 14 ; j++) {
+			a.add(new Carte(j," Pique"));
+			a.add(new Carte(j," Coeur"));
+			a.add(new Carte(j," Trefle"));
+			a.add(new Carte(j," Carreau"));
+		}	
 	}
 	
 	/*public void alea(Tas a) {

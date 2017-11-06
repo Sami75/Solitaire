@@ -43,13 +43,16 @@ public class Jeu {
 	public void distribPique(){
 		
 		String pique = "pique";
-			for(int i = 1 ; i<= 10 ; i++) {
-				String a = i + " " + pique;
+			for(int i = 1 ; i<= 9 ; i++) {
+				String a = i + " " + pique + "      ";
 				c8.add(a);
 			}
-		String valet = "valet pique";
-		String dame = "dame pique";
-		String roi = "roi pique";
+		int i = 10;
+		String a = i + " " + pique + "     ";
+		c8.add(a);
+		String valet = "valet pique  ";
+		String dame = "dame pique   ";
+		String roi = "roi pique    ";
 		c8.add(valet);
 		c8.add(dame);
 		c8.add(roi);
@@ -58,29 +61,35 @@ public class Jeu {
 	
 	public void distribCarreau(){
 			
-			String carreau = "carreau";
-				for(int i = 1 ; i<= 10 ; i++) {
-					String a = i + " " + carreau;
-					c8.add(a);
-				}
-			String valet = "valet carreau";
-			String dame = "dame carreau";
-			String roi = "roi carreau";
-			c8.add(valet);
-			c8.add(dame);
-			c8.add(roi);
+		String carreau = "carreau";
+			for(int i = 1 ; i<= 9 ; i++) {
+				String a = i + " " + carreau + "    ";
+				c8.add(a);
+			}
+		int i = 10;
+		String a = i + " " + carreau + "   ";
+		c8.add(a);
+		String valet = "valet carreau";
+		String dame = "dame carreau ";
+		String roi = "roi carreau  ";
+		c8.add(valet);
+		c8.add(dame);
+		c8.add(roi);
 	
 		}
 	public void distribTrefle(){
 		
 		String trefle = "trefle";
-			for(int i = 1 ; i<= 10 ; i++) {
-				String a = i + " " + trefle;
+			for(int i = 1 ; i<= 9 ; i++) {
+				String a = i + " " + trefle + "     ";
 				c8.add(a);
 			}
-		String valet = "valet trefle";
-		String dame = "dame trefle";
-		String roi = "roi trefle";
+		int i = 10;
+		String a = i + " " + trefle + "    ";
+		c8.add(a);
+		String valet = "valet trefle ";
+		String dame = "dame trefle  ";
+		String roi = "roi trefle   ";
 		c8.add(valet);
 		c8.add(dame);
 		c8.add(roi);
@@ -89,13 +98,16 @@ public class Jeu {
 	public void distribCoeur(){
 		
 		String coeur = "coeur";
-			for(int i = 1 ; i<= 10 ; i++) {
-				String a = i + " " + coeur;
+			for(int i = 1 ; i<= 9 ; i++) {
+				String a = i + " " + coeur + "      ";
 				c8.add(a);
 			}
-		String valet = "valet coeur";
-		String dame = "dame coeur";
-		String roi = "roi coeur";
+		int i = 10;
+		String a = i + " " + coeur + "     ";
+		c8.add(a);
+		String valet = "valet coeur  ";
+		String dame = "dame coeur   ";
+		String roi = "roi coeur    ";
 		c8.add(valet);
 		c8.add(dame);
 		c8.add(roi);
@@ -116,11 +128,12 @@ public class Jeu {
 	}
 	
 	public void afficheTas(Tas a) {
+		
 		for(int i = 0; i < a.size(); i++)
 	    {
 	      System.out.print( a.get(i) + " ");
 	    }
-		System.out.println();
+		System.out.println(" ");
 	}
 	
 	public void afficheVraiTas(Tas a) {
@@ -129,14 +142,44 @@ public class Jeu {
 	}
 	
 	public void afficheJeu() {
-		afficheTas(c1); 
-		afficheTas(c2);
-		afficheTas(c3);
-		afficheTas(c4);
-		afficheTas(c5);
-		afficheTas(c6);
-		afficheTas(c7);
-		afficheTas(c8);
+		//afficheTas(c1); 
+//		afficheTas(c2);
+//		afficheTas(c3);
+//		afficheTas(c4);
+//		afficheTas(c5);
+//		afficheTas(c6);
+//		afficheTas(c7);
+		//afficheTas(c8);
+		Tas[] tab = new Tas[7];
+		tab[0] = c1;
+		tab[1] = c2;
+		tab[2] = c3;
+		tab[3] = c4;
+		tab[4] = c5;
+		tab[5] = c6;
+		tab[6] = c7;
+		for(int i=0;i<7;i++) {
+			for(int j=0;j<tab.length;j++) {
+				if(tab[j].size()<i+1) {
+					System.out.print("|               |");
+				}
+//				else if(i < tab.length){
+//					System.out.print("|Carte inconnue |");
+//				}
+				else{
+					if(i == tab[j].size()-1)
+					{
+					System.out.print("|"+tab[j].get(i)+"  |");
+					}
+					else{
+						System.out.print("|Carte inconnue |");
+					}
+				}
+				
+			}
+			System.out.println();
+		}
+		
 	}
 
 	public void afficheVraiJeu() {
@@ -169,55 +212,31 @@ public class Jeu {
 	}
 	
 	public void deplaceColonne() {
-		System.out.println("Déplacer vers colonne");
-	}
-	
-	
-	public void afficheMenu() {
-		
-		System.out.println();
-		System.out.println("1. Piocher");
-		System.out.println("2. Déplacer une carte dans une colonne");
-		System.out.println("3. Déplacer une carte dans une pile");
-		System.out.println("Quel action souhaitez vous faire ? Taper le numéros correspondant");
 		
 		Scanner sc = new Scanner(System.in);
 		int r = sc.nextInt();
 		
-		switch(r) {
-		
-		case 1 : 
-				pioche();
-				break;
-		
-		case 2 : 
-				deplaceColonne();
-				break;
-		
-		case 3 : 
-				deplacePile();
-				break;
-		
-		default : System.out.println("Veuillez entrer les numéros correspondant"); new MenuSolitaire();
-		}
 	}
+	
+	
+	
+	
 	public static void main(String[] args){
+		MenuSolitaire b = new MenuSolitaire();
 		Jeu a = new Jeu();
-		a.afficheVraiJeu();
+		a.afficheJeu();
 		System.out.println();
-		a.affichePioche();
-		System.out.println();
-		a.pioche();
+		//a.affichePioche();
+		//System.out.println();
+		//a.pioche();
+		
 		
 		while(true) {
 			
-			a.afficheMenu();
-			a.afficheVraiJeu();
+			b.afficheMenu();
+			a.afficheJeu();
 		
 		}
 		
-		
 	}
-	
-	
 }

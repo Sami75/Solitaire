@@ -1,12 +1,17 @@
 import java.util.Scanner;
 
 public class MenuSolitaire {
-
-public void afficheMenu() {
-		Jeu a = new Jeu();
+	
+	private Jeu jeu;
+	
+	public MenuSolitaire(Jeu a) {
+		jeu = a;
+	}
+	public void afficheMenu() {
+		
 		System.out.println();
 		System.out.println("1. Piocher");
-		System.out.println("2. Déplacement de carte");
+		System.out.println("2. Déplacement de la carte de la pioche vers une colonne");
 		System.out.println("3. Déplacement de pile");
 		System.out.println("Quel action souhaitez vous faire ? Taper le numéros correspondant");
 		
@@ -17,11 +22,11 @@ public void afficheMenu() {
 		
 		case 1 : 
 				
-				//a.pioche();
+				jeu.piocher();
 				break;
 		
 		case 2 : 
-				//a.deplaceColonne();
+				jeu.piocheVersColonne();
 				break;
 		
 		case 3 : 

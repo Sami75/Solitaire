@@ -1,39 +1,62 @@
-
 public class Carte {
 
+	private boolean visible;
 	private int num;
 	private String forme;
 	
 	public Carte(int numb, String formee) {
 		num = numb;
 		forme = formee;
-	}
-	
-	public String getCarte() {
-		return num + forme;
+		visible = false;
 	}
 	
 	public String toString() {
-		if(num == 1) {
-			String nom = "As de";
-			return nom + forme;
+		String vn = num + forme;
+		switch(num) {
+		case 1:
+			vn = "  As  de " + forme+"  ";
+			break;
+		case 11:
+			vn = " Valet de " + forme+ " ";
+			break;
+		case 12: 
+			vn = "  Dame de " + forme+ " ";
+			break;
+		case 13: 
+			vn = "  Roi  de " + forme+" ";
+			break;
+		case 2: 
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			vn ="   " + num + "  de " + forme + "  ";
+			break;
+		case 10:
+			vn = "   " + num + "  de " + forme + " ";
+			break;
 		}
-		else if(num == 11) {
-			String nom = "Valet de";
-			return nom + forme;
-		}
-		
-		else if(num == 12) {
-			String nom = "Dame de";
-			return nom + forme;
-		}
-		
-		else if(num == 13) {
-			String nom = "Roi de";
-			return nom + forme;
-		}
-		return num + forme;
+		if(visible)
+			return vn;
+		else
+			return "  Carte inconnue  ";
 	}
+	
+	public int getNum() {
+		return num;
+	}
+	
+	public void setVisible() {
+		visible = true;
+	}
+	
+	public String getForme() {
+		return forme;
+	}
+
 	
 	
 }

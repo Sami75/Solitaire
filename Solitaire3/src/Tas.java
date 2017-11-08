@@ -1,29 +1,48 @@
-
-
 import java.util.ArrayList;
 
 public class Tas {
-	
+	String nom;
+	int taille;
 	int cmp;
 	private ArrayList<Carte> array;
 	
-	public Tas(int taille) {
+	public Tas(int taillee) {
+		taille = taillee;
 		array = new ArrayList<Carte>();
 	} 
 	
-	public void setPioche() {
-		cmp = 0;
+	
+	public int getTaille() {
+		return taille;
 	}
 	
-	
-	public void incrementTas() {
-		if(cmp == this.array.size()-1)
-			cmp = 0;
-		else
-			cmp++;
+	public void afficheTas() {
+		for (int i = 0 ; i < this.taille; i++) {
+			System.out.println("|" + array.get(i) + " | ");
+		}
 	}
 	
-	public int getCmp() {
-		return cmp;
+	public void setNom(String a) {
+		nom = a;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public Carte getCarte(int i) {
+		return array.get(i);
+	}
+	public void removeCarte(int i) {
+		array.remove(i);
+		taille -= 1;
+	}
+	
+	public void addCarte(Carte a) {
+		array.add(a);
+	}
+	
+	public void incTaille() {
+		taille++;
 	}
 }
+	
+

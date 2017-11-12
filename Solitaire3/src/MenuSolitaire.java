@@ -12,7 +12,8 @@ public class MenuSolitaire {
 		System.out.println();
 		System.out.println("1. Piocher");
 		System.out.println("2. Déplacement de la carte de la pioche vers une colonne");
-		System.out.println("3. Déplacement de pile");
+		System.out.println("3. Déplacement d'une carte depuis une colonne vers une colonne");
+		System.out.println("4. Déplacement de pile");
 		System.out.println("Quel action souhaitez vous faire ? Taper le numéros correspondant");
 		
 		Scanner sc = new Scanner(System.in);
@@ -30,8 +31,10 @@ public class MenuSolitaire {
 				break;
 		
 		case 3 : 
-				//a.deplacePile();
+				jeu.carteVersColonne();
 				break;
+		case 4 :
+				jeu.pileVersColonne();
 		
 		default : System.out.println("Veuillez entrer les numéros correspondant"); 
 		}

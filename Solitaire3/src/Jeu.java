@@ -121,10 +121,70 @@ public class Jeu {
 	}
 	
 	
+	public void carteVersColonne() {
+		System.out.print("Selectionner la carte, en tapant le numéros de la colonne correspondante : ");
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		
+		System.out.println("Vers quelle colonne voulez vous déplacer " + tableau[r-1].getCarte(tableau[r-1].getTaille()-1) + " ? Entrez le numéros de colonne");
+		Scanner sc2 = new Scanner(System.in);
+		int r2 = sc2.nextInt();
+		
+		if(verifNum(tableau[r-1].getCarte(tableau[r-1].getTaille()-1), tableau[r2-1].getCarte(tableau[r2-1].getTaille()-1)) && verifCouleur(tableau[r-1].getCarte(tableau[r-1].getTaille()-1), tableau[r2-1].getCarte(tableau[r2-1].getTaille()-1))) {
+			tableau[r2-1].incTaille();
+			tableau[r2-1].addCarte(tableau[r-1].getCarte(tableau[r-1].getTaille()-1));
+			tableau[r-1].removeCarte(tableau[r-1].getTaille()-1);
+			System.out.println("Votre carte a bien été ajoutée a la colonne " + r2);
+			if(tableau[r-1].getTaille()>=1) {
+				tableau[r-1].getCarte(tableau[r-1].getTaille()-1).setVisible();
+			}
+		}
+		else 
+			System.out.println("Le déplacement n'est pas possible !");
+	}
+	
+	public void pileVersColonne() {
+		System.out.println("Selectionner la colonne où se trouve la future pile :  ");
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		
+		System.out.println("Pour selectionner la pile, entrer le nombre total de carte que vous souhaiter emporter avec : " + tableau[r-1].getCarte(tableau[r-1].getTaille()-1));
+		Scanner sc2 = new Scanner(System.in);
+		int r2 = sc2.nextInt();
+		
+		for(int i=r2; i>=2; i--) {
+			System.out.println("                                          "+tableau[r-1].getCarte(tableau[r-1].getTaille()-i));
+			}
+		System.out.println("Vous avez selectionner la pile suivante : " + tableau[r-1].getCarte(tableau[r-1].getTaille()-1));
+		
+		System.out.println("Maintenant, entrer le numeros de la colonne ou vous souhaitez déposer la pile :  ");
+		Scanner sc3 = new Scanner(System.in);
+		int r3 = sc3.nextInt();
+
+		
+		if(verifNum(tableau[r-1].getCarte(tableau[r-1].getTaille()-r2), tableau[r3-1].getCarte(tableau[r3-1].getTaille()-1)) && verifCouleur(tableau[r-1].getCarte(tableau[r-1].getTaille()-r2), tableau[r3-1].getCarte(tableau[r3-1].getTaille()-1))) {
+			for(int j=r2; j>0; j--) {
+				tableau[r3-1].incTaille();
+				tableau[r3-1].addCarte(tableau[r-1].getCarte(tableau[r-1].getTaille()-j));
+			
+			}
+			
+			for(int k=r2; k>=1; k--) {
+				
+				tableau[r-1].removeCarte(tableau[r-1].getTaille()-k);
+			}
+			System.out.println("Votre pile a bien été ajoutées a la colonne " + r3);
+			if(tableau[r-1].getTaille()>=1) {
+				tableau[r-1].getCarte(tableau[r-1].getTaille()-1).setVisible();
+			}
+		}
+		else 
+			System.out.println("Le déplacement n'est pas possible !");
+	}
+	
 	public boolean verifNum(Carte choix, Carte destination) {
 		
 		return choix.getNum() - destination.getNum() == -1;
-
 	}
 	
 	public boolean verifCouleur(Carte choix, Carte destination) {
@@ -145,7 +205,7 @@ public class Jeu {
 		jeu.afficheJeu();
 		
 		
-		System.out.println("|             ||                 ||               ||            ||");
+		//System.out.println("|             ||                 ||               ||            ||");
 		//a.affichePioche();
 		//System.out.println();
 		//a.pioche();

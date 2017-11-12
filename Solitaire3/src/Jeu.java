@@ -138,14 +138,16 @@ public class Jeu {
 	
 	
 	public void piocheVersColonne() {
-		System.out.println("Vers quelle colonne voulez vous déplacer votre carte : " + pioche.getCartePioche() + " ? ! Entrez le numéro de colonne");
-		Scanner sc = new Scanner(System.in);
-		int r = sc.nextInt();
 		
 		if(pioche.getCmp() == -1) {
 			System.out.println("Vous n'avez pas encore piocher, veuillez piocher avant de vouloir déplacer la carte!");
 			return;
 		}
+		
+		System.out.println("Vers quelle colonne voulez vous déplacer la carte pioché : " + pioche.getCartePioche() + " ? ! Entrez le numéro de colonne");
+		Scanner sc = new Scanner(System.in);
+		int r = sc.nextInt();
+		
 		if( r > 7 || r < 1) {
 			System.out.println("La colonne " + r + " n'existe pas, il n'y a que 7 colonnes !");
 			return;
@@ -154,7 +156,7 @@ public class Jeu {
 			if(pioche.getCartePioche().getNum() == 13) {
 				tableau[r-1].incTaille();
 				tableau[r-1].addCarte(pioche.getCartePioche());
-				System.out.println("Votre carte " + pioche.getCartePioche() + " a bien été ajoutée a la colonne " + r);
+				System.out.println("Votre carte :" + pioche.getCartePioche() + " a bien été ajoutée a la colonne " + r);
 				pioche.removeCarte(pioche.getCmp());
 				if(pioche.getCmp() == pioche.getTaille()) {
 					pioche.incPioche();
@@ -191,6 +193,11 @@ public class Jeu {
 		Scanner sc = new Scanner(System.in);
 		int r = sc.nextInt();
 		
+		if( r > 7 || r < 1) {
+			System.out.println("La colonne " + r + " n'existe pas, il n'y a que 7 colonnes !");
+			return;
+		}
+		
 		if(tableau[r-1].vide()) {
 			System.out.println("Il n'y a pas de cartes dans la colonne " + r);
 			return;
@@ -199,11 +206,6 @@ public class Jeu {
 		System.out.println("Dans quelle colonne voulez vous mettre la carte : " + tableau[r-1].getCarte(tableau[r-1].getTaille()-1) + " ? ! Entrez le numéro de colonne");
 		Scanner s = new Scanner(System.in);
 		int m = s.nextInt();
-		
-		if( r > 7 || r < 1) {
-			System.out.println("La colonne " + r + " n'existe pas, il n'y a que 7 colonnes !");
-			return;
-		}
 		
 		if( m > 7 || m < 1) {
 			System.out.println("La colonne " + m + " n'existe pas, il n'y a que 7 colonnes !");
@@ -248,6 +250,11 @@ public class Jeu {
 		Scanner sc = new Scanner(System.in);
 		int c = sc.nextInt();
 		
+		if( c > 7 || c < 1) {
+			System.out.println("La colonne " + c + " n'existe pas, il n'y a que 7 colonnes !");
+			return;
+		}
+		
 		if(tableau[c-1].vide()) {
 			System.out.println("Il n'y a pas de cartes dans la colonne " + c);
 			return;
@@ -258,7 +265,12 @@ public class Jeu {
 		int nb = s.nextInt();
 		
 		if(tableau[c-1].getTaille() < nb) {
-			System.out.println("Il n'y a pas assez de cartes;");
+			System.out.println("Il n'y a pas assez de cartes");
+			return;
+		}
+		
+		if(!tableau[c-1].getCarte(tableau[c-1].getTaille()-1-(nb-1)).estVisible()) {
+			System.out.println("Vous ne pouvez pas déplacer de cartes inconnues");
 			return;
 		}
 		
@@ -273,21 +285,11 @@ public class Jeu {
 		Scanner ss = new Scanner(System.in);
 		int d = sc.nextInt();
 		
-		if(  c > 7 || c < 1) {
-			System.out.println("La colonne " + c + " n'existe pas, il n'y a que 7 colonnes !");
-			return;
-		}
-		
 		if(  d > 7 || d < 1) {
 			System.out.println("La colonne " + d + " n'existe pas, il n'y a que 7 colonnes !");
 			return;
 		}
 		
-		
-		if(!tableau[c-1].getCarte(tableau[c-1].getTaille()-1-(nb-1)).estVisible()) {
-			System.out.println("Vous ne pouvez pas déplacer de cartes inconnues");
-			return;
-		}
 		if(tableau[d-1].vide()) {
 			
 			if(tableau[c-1].getCarte(tableau[c-1].getTaille()-1-(nb-1)).getNum() == 13) {
@@ -397,11 +399,17 @@ public class Jeu {
 	
 	public void piocheVersPile() {
 		
-		System.out.println("Dans quelle pile voulez vous mettre la carte : " + pioche.getCartePioche() + " ? ! Entrez le numéro de colonne");
+		if(pioche.getCmp() == -1) {
+			System.out.println("Vous n'avez pas encore piocher, veuillez piocher avant de vouloir déplacer la carte!");
+			return;
+		}
+		
+		System.out.println("Dans quelle pile voulez vous mettre la carte pioché : " + pioche.getCartePioche() + " ? ! Entrez le numéro de colonne");
 		Scanner s = new Scanner(System.in);
 		int d = s.nextInt();
-		if(d > pile.length || d < 0) {
-			System.out.println("Déplacement impossible, Il n'y a que 4 piles");
+		
+		if(d > pile.length || d < 1) {
+			System.out.println("La pile : " + d + "n'existe pas, il n'y a que 4 piles ! ");
 			return;
 		}
 		if(pile[d-1].vide()) {
@@ -446,23 +454,23 @@ public class Jeu {
 		Scanner sc = new Scanner(System.in);
 		int c = sc.nextInt();
 		
-		if(tableau[c-1].vide()) {
-			System.out.println("Il n'y a pas de cartes dans la pile " + c);
+		if(c > pile.length || c < 1) {
+			System.out.println("La pile " + c + " n'existe pas, il n'y a que 4 piles !");
 			return;
 		}
 		
+		if(pile[c-1].vide()) {
+			System.out.println("Il n'y a pas de cartes dans la pile " + c);
+			return;
+		}
 		
 		System.out.println("Dans quelle colonne voulez vous mettre la carte : " + pile[c-1].getCarte(pile[c-1].getTaille()-1) + " ? ! Entrez le numéro de colonne");
 		Scanner s = new Scanner(System.in);
 		int d = s.nextInt();
 		
-		if(  c > 7 || c < 1) {
-			System.out.println("La colonne " + c + " n'existe pas, il n'y a que 7 colonnes !");
-			return;
-		}
 		
-		if( d > 4 || d < 1) {
-			System.out.println("La pile " + d + " n'existe pas, il n'y a que 4 piles !");
+		if( d > 7 || d < 1) {
+			System.out.println("La colonne " + d + " n'existe pas, il n'y a que 7 colonnes !");
 			return;
 		}
 		

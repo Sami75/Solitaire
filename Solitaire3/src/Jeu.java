@@ -82,7 +82,12 @@ public class Jeu {
 	}
 	
 	public void piocher() {
-		pioche.incPioche();
+		if(pioche.vide()) {
+			System.out.println("La pioche est vide !");
+			return;
+		}
+		else
+			pioche.incPioche();
 		
 	}
 	

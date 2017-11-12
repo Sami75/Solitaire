@@ -52,6 +52,9 @@ public class Carte {
 	public void setVisible() {
 		visible = true;
 	}
+	public boolean estVisible() {
+		return visible;
+	}
 	
 	public String getForme() {
 		return forme;

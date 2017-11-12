@@ -33,6 +33,10 @@ public class Pioche {
 	}
 	
 	public void affichePioche() {
+		if(vide()) {
+			System.out.println("Pioche vide !");
+			return;
+		}
 		if (cmp == -1)
 			System.out.println("Pioche : Carte retournée");
 		else
@@ -40,7 +44,7 @@ public class Pioche {
 	}
 	
 	public void incPioche() {
-		if(cmp == this.getTaille()-1)
+		if(cmp == this.getTaille()-1 || cmp == this.getTaille())
 			cmp = 0;
 		else
 			cmp++;
@@ -48,6 +52,10 @@ public class Pioche {
 	
 	public ArrayList<Carte> getArray(){
 		return array;
+	}
+	
+	public boolean vide() {
+		return(array.isEmpty());
 	}
 	
 	public int getCmp() {

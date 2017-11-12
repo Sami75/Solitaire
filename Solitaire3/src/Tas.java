@@ -36,12 +36,23 @@ public class Tas {
 		taille -= 1;
 	}
 	
+	public boolean vide() {
+		return(array.isEmpty());
+	}
+	
 	public void addCarte(Carte a) {
 		array.add(a);
 	}
 	
 	public void incTaille() {
 		taille++;
+	}
+	public void decTaille() {
+		taille--;
+	}
+	public void majVisible() {
+		if(taille > 0)
+			getCarte(taille-1).setVisible();
 	}
 }
 	

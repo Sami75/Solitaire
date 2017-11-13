@@ -1,4 +1,6 @@
 import java.lang.Math; 
+import java.util.Collections;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,6 +79,9 @@ public class Jeu {
 	
 	}
 
+	public void melangePioche() {
+		Collections.shuffle(pioche.getArray());
+	}
 	public void affichePioche() {
 		pioche.affichePioche();
 	}
@@ -541,6 +546,7 @@ public class Jeu {
 		MenuSolitaire menu = new MenuSolitaire(jeu);
 		jeu.initPioche();
 		jeu.alea();
+		jeu.melangePioche();
 		jeu.afficheJeu();
 		
 		while(!jeu.finDeJeu()) {

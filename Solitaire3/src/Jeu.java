@@ -140,7 +140,7 @@ public class Jeu {
 	public void piocheVersColonne() {
 		
 		if(pioche.getCmp() == -1) {
-			System.out.println("Vous n'avez pas encore piocher, veuillez piocher avant de vouloir déplacer la carte!");
+			System.out.println("Vous n'avez pas encore piocher, veuillez piocher avant de vouloir déplacer la carte de la pioche!");
 			return;
 		}
 		
